@@ -19,9 +19,15 @@
               const randomNumber = Math.random();
              return randomNumber >= 0.5 ? 2 : 1;
             }
-            else{
+            else if(temp<=1000 && temp>=500)
+            {
                  // Generate a random quantity between 1 and 10
             return Math.floor(Math.random() * 10) + 1;
+            }
+            else
+            {
+                 // Generate a random quantity between 1 and 10
+            return Math.floor(Math.random() * 20) + 1;
             }
            
         }
@@ -45,14 +51,16 @@
             }
 
             const table = document.getElementById('bill-table');
-            table.innerHTML = '<tr><th>Product Name</th><th>Rate</th><th>Quantity</th><th>Total</th></tr>';
+            table.innerHTML = '<tr><th>#</th><th>Product Name</th><th>Rate</th><th>Quantity</th><th>Total</th></tr>';
             let amountLeft = amount;
             let total = 0;
+            let i=1;
            while(amountLeft>0) {
                 if(amountLeft<50)
                 {
                     const row = table.insertRow(-1);
                     row.innerHTML = `
+                    <td>${i}</td>
                     <td>${'Packaging'}</td>
                     <td>${amountLeft}</td>
                     <td>${1}</td>
@@ -69,11 +77,13 @@
                     amountLeft -= productTotal;
                     const row = table.insertRow(-1);
                     row.innerHTML = `
+                    <td>${i}</td>
                     <td>${product.name}</td>
                     <td>${product.rate}</td>
                     <td>${quantity}</td>
                     <td>${productTotal}</td>
                 `;
+                i++;
                 }
                 
 
@@ -82,7 +92,7 @@
             
 
             const totalRow = table.insertRow(-1);
-            totalRow.innerHTML = `<td colspan="3"></td><td>${amount}</td><td></td>`;
+            totalRow.innerHTML = `<td colspan="4"><em><strong>Total</strong></em></td><td>${amount}</td>`;
 
         }
 
@@ -97,12 +107,15 @@
 
         function showProducts() {
             const table = document.getElementById('product-table');
-            table.innerHTML = '<tr><th>Product Name</th><th>Rate</th><th>Action</th></tr>';
+            table.innerHTML = '<tr><th>#</th><th>Product Name</th><th>Rate</th></tr>';
+            let i=1;
             for (const product of products) {
                 const row = table.insertRow(-1);
                 row.innerHTML = `
+                    <td>${i}</td>
                     <td>${product.name}</td>
                     <td>${product.rate}</td>
                 `;
+                i++;
             }
         }

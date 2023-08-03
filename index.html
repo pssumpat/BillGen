@@ -3,6 +3,9 @@
 <head>
     <title>Product Bill Generator</title>
     <script src="billGen.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <style>
         /* Add your CSS styling here */
         /* For simplicity, we'll keep it minimal */
@@ -10,15 +13,15 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        #bill-table {
+        #bill-table ,#product-table{
             margin: 20px auto;
             border-collapse: collapse;
         }
-        #bill-table th, #bill-table td {
+        #bill-table th, #bill-table td,#product-table th, #product-table td {
             border: 1px solid #dddddd;
             padding: 8px;
         }
-        #bill-table th {
+        #bill-table th, #product-table th {
             background-color: #f2f2f2;
         }
         #total {
@@ -28,35 +31,51 @@
     </style>
 </head>
 <body>
-    <h2>Product Bill Generator</h2>
 
+    <!-- As a link -->
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bill Generator</a>
+        <!-- Button to view products -->
+        <button onclick="showProducts()" type="button" class="btn btn-primary">View Products</button>
+        </div>
+    </nav>
+    <br>
     <!-- Input box to take the amount from the user -->
-    <label for="amount">Enter Amount: </label>
-    <input type="number" id="amount" placeholder="Enter amount">
-
-    <!-- Button to view products and generate bill -->
-    <button onclick="generateBill()">Generate Bill</button>
-
-     <!-- Button to view products and generate bill -->
-     <button onclick="showProducts()">View Products</button>
+    <div id="inputBox" class="input-group input-group-sm mb-3 container">
+        <span class="input-group-text" id="inputGroup-sizing-sm"><strong>Amount:</strong></span>
+        <input id="amount" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Enter amount">
+     <!-- Button to generate bill -->
+     <button onclick="generateBill()" type="button" class="btn btn-dark">Generate Bill</button>
+    </div> 
 
     <!-- Table to display the bill -->
-    <table id="bill-table">
-        <tr>
-            <th>Product Name</th>
-            <th>Rate</th>
-            <th>Quantity</th>
-            <th>Total</th>
-        </tr>
-        <p id="total">Total: 0</p>
-    </table>
-
-    <table id="product-table">
-        <tr>
-            <th>Product Name</th>
-            <th>Rate</th>
-            <th>Action</th>
-        </tr>
-    </table>
+    <div class="container">
+        <table class="table" id="bill-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+          </table>
+    </div>
+    
+       <!-- Table to display the products -->
+       <div class="container">
+        <table class="table" id="product-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Rate</th>
+              </tr>
+            </thead>
+          </table>
+       </div>
+      
 </body>
 </html>
