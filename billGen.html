@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Bill Generator</title>
+    <script src="billGen.js"></script>
+    <style>
+        /* Add your CSS styling here */
+        /* For simplicity, we'll keep it minimal */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #bill-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        #bill-table th, #bill-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+        }
+        #bill-table th {
+            background-color: #f2f2f2;
+        }
+        #total {
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Bill Generator</h2>
+
+    <!-- Input box to take the amount from the user -->
+    <label for="amount">Enter Amount: </label>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <!-- Button to view products and generate bill -->
+    <button onclick="generateBill()">Generate Bill</button>
+
+     <!-- Button to view products and generate bill -->
+     <button onclick="showProducts()">View Products</button>
+
+    <!-- Table to display the bill -->
+    <table id="bill-table">
+        <tr>
+            <th>Product Name</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        <p id="total">Total: 0</p>
+    </table>
+
+    <table id="product-table">
+        <tr>
+            <th>Product Name</th>
+            <th>Rate</th>
+            <th>Action</th>
+        </tr>
+    </table>
+</body>
+</html>
