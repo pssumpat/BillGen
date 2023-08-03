@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Bill Generator</title>
+    <style>
+        /* Add your CSS styling here */
+        /* For simplicity, we'll keep it minimal */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #bill-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        #bill-table th, #bill-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+        }
+        #bill-table th {
+            background-color: #f2f2f2;
+        }
+        #total {
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Bill Generator</h2>
+
+    <!-- Input box to take the amount from the user -->
+    <label for="amount">Enter Amount: </label>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <!-- Button to view products and generate bill -->
+    <button onclick="generateBill()">View Products & Generate Bill</button>
+
+    <!-- Table to display the bill -->
+    <table id="bill-table">
+        <tr>
+            <th>Product Name</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </table>
+
+    <p id="total">Total: 0</p>
+
+    <script>
+        // JavaScript code goes here
+
+        // Sample products object
+        const products = [
+            { name: 'Product 1', rate: 10 },
+            { name: 'Product 2', rate: 15 },
+            { name: 'Product 3', rate: 20 }
+            // Add more products as needed
+        ];
+
+        function generateBill() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(amount)) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+
+            const table = document.getElementById('bill-table');
+            table.innerHTML = '<tr><th>Product Name</th><th>Rate</th><th>Quantity</th><th>Total</th><th>Action</th></tr>';
+
+            let total = 0;
+            for (const product of products) {
+                const quantity = Math.floor(amount / product.rate);
+                const productTotal = quantity * product.rate;
+                total += productTotal;
+
+                const row = table.insertRow(-1);
+                row.innerHTML = `
+                    <td>${product.name}</td>
+                    <td>${product.rate}</td>
+                    <td>${quantity}</td>
+                    <td>${productTotal}</td>
+                    <td><button onclick="deleteProduct(this)">Delete</button></td>
+                `;
+            }
+
+            const totalRow = table.insertRow(-1);
+            totalRow.innerHTML = `<td colspan="3"></td><td>${total}</td><td></td>`;
+            document.getElementById('total').innerHTML = `Total: ${total}`;
+        }
+
+        function deleteProduct(button) {
+            const row = button.parentNode.parentNode;
+            const productTotal = parseFloat(row.cells[3].innerText);
+            const totalElement = document.getElementById('total');
+            const total = parseFloat(totalElement.innerText.replace('Total: ', ''));
+            totalElement.innerText = `Total: ${(total - productTotal).toFixed(2)}`;
+            row.remove();
+        }
+    </script>
+</body>
+</html>
