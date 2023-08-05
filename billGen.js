@@ -485,7 +485,7 @@
 
         function getRandomProduct() 
         { 
-            const productSize = 6;
+            const productSize = 461;
             return Math.floor(Math.random() * productSize) + 1;
         }
 
